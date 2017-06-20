@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="RegApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Forms</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/index.css">
+    <script src="/libs/angular/angular.js"></script>
+    <script src="/index.js"></script>
+</head>
+
+<body ng-controller="RegCtrl as regCtrl">
+    <h1>Registration</h1>
+    <form name="regForm" novalidate ng-submit="regCtrl.register()">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input id="name" type="text" name="name" required 
+                               ng-model="regCtrl.name" 
+                               ng-class="{ error: regForm.name.$invalid, correct: !regForm.name.$invalid }">
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <input id="email" type="email" name="email" required
+                    ng-model="regCtrl.email" 
+                    ng-class="{error: regForm.email.$invalid, correct: !regForm.email.$invalid}"
+                    >
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" ng-click="regCtrl.resetForm()">
+                        Clear
+                        </button>
+
+
+                    <button type="submit" ng-disabled="regForm.$invalid">
+                        Register me
+                        </button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    {{regCtrl.message}} invalid: {{regForm.$invalid}} name: {{regForm.name.$dirty}}, {{regForm.$dirty}}
+
+                </td>
+        </table>
+    </form>
+</body>
+
+</html>
